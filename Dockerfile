@@ -9,7 +9,7 @@ ARG MTA_PLUGIN_URL=https://github.com/cloudfoundry-incubator/multiapps-cli-plugi
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
 # Install required dependecies
-RUN apt-get update && apt-get install -y --no-install-recommends curl tar ca-certificates && \
+RUN apt-get update && apt-get install -y --no-install-recommends curl tar jq ca-certificates && \
     rm -rf /var/lib/apt/lists/*
 
 # Add group & user
