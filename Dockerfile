@@ -12,13 +12,13 @@ ENV HOME=${USER_HOME}
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
 # Install required dependecies
-RUN apt-get update && apt-get install -y --no-install-recommends  curl tar ca-certificates && \
+RUN apt-get update && apt-get install -y --no-install-recommends curl tar ca-certificates && \
     rm -rf /var/lib/apt/lists/*
 
 # Add group & user
 RUN addgroup -gid 1001 piper && \
     useradd piper --uid 1001 --gid 1001 --shell /bin/bash --home-dir "${USER_HOME}" --create-home && \
-    curl --location --silent ""https://cli.run.pivotal.io/stable?release=linux64-binary&source=github"" | tar -zx -C /usr/local/bin && \
+    curl --location --silent "https://cli.run.pivotal.io/stable?release=linux64-binary&source=github" | tar -zx -C /usr/local/bin && \
     cf --version
 
 # Switch to the created user
