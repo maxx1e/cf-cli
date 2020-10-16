@@ -19,7 +19,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends curl tar ca-cer
 RUN addgroup -gid 1001 piper && \
     useradd piper --uid 1001 --gid 1001 --shell /bin/bash --home-dir "${USER_HOME}" --create-home && \
     curl --location --silent "https://cli.run.pivotal.io/stable?release=linux64-binary&source=github" | tar -zx -C /usr/local/bin && \
-    chmod -R o+rwx "${USER_HOME}"
+    chmod -R o+rwx "${USER_HOME}" && \
     cf --version
 
 # Switch to the created user
