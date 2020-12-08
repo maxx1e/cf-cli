@@ -11,7 +11,10 @@ SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 # Install required dependecies
 RUN apt-get update && apt-get install -y --no-install-recommends curl tar jq ca-certificates && \
     rm -rf /var/lib/apt/lists/*
-
+# Install yq processing tool
+RUN curl -LJO https://github.com/mikefarah/yq/releases/download/3.4.1/yq_linux_amd64 && \
+    chmod a+rx yq_linux_amd64 && \
+    mv yq_linux_amd64 /opt/yq
 # Add group & user
 RUN addgroup -gid 1001 piper && \
     useradd piper --uid 1001 --gid 1001 --shell /bin/bash --home-dir "${USER_HOME}" --create-home && \
